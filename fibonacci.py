@@ -7,7 +7,7 @@ def fibonacci(x):
 		print(a)
 	elif x==1:
 		print(b)
-	else
+	else:
 		print(a)
 		print(b)
 		for i in range(2,x+1):
