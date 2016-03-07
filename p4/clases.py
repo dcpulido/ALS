@@ -61,4 +61,5 @@ for m_name in dir(p1):
 	if callable(m):
 		print("mtx: "+ m_name)
 	else:
-		print("Atr: "+ m_name)
+			print("Atr: "+ m_name)
+
