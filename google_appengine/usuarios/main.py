@@ -28,14 +28,14 @@ class MainHandler(webapp2.RequestHandler):
 
 		if user != None:
 			access_link = users.create_logout_url("/")
-			User_id=user.nickname()
+			userid=user.nickname()
 		else:
 			access_link = users.create_login_url("/")
 			logged="Not logged In"
 
 		self.response.write( "<a href='"+ access_link+"'>login/logout</a>\
 							<br>"+logged\
-							+ "<br>" +userid)
+							+"<br>" +userid)
 	
 
 app = webapp2.WSGIApplication([
