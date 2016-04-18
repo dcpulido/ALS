@@ -15,37 +15,29 @@
 # limitations under the License.
 #
 import webapp2
-import jinja2
-import os
-
-JINJA_ENVIRONMENT = jinja2.Environment(
- loader=jinja2.FileSystemLoader(os.path.dirname( __file__ )),
- extensions=["jinja2.ext.autoescape"],
- autoescape=True)
-
+from google.appengine.api import users
 
 class MainHandler(webapp2.RequestHandler):
 	def __init__(self,request=None,response=None):
 		self.initialize(request,response)
-		self.name=self.request.get("edName","anonymous")
 	def get(self):
-		pass
-	def post(self):
-		label_values={
-			"user_name": self.name,
-			"user_list": [1,2,3,4,5,6,7,8,9]
-		}
-		template = JINJA_ENVIRONMENT.get_template( "answer.html" )
-		self.response.write(template.render(label_values))
+		access_link="ERROR"
+		logged="logged In"
+		userid="None"
+		user= users.get_current_user()
 
-class MainHandler2(webapp2.RequestHandler):
-	def __init__(self,request=None,response=None):
-		self.initialize(request,response)
-	def get(self):
-		pass
-	def post(self):
-		self.redirect("index2.html")
+		if user != None:
+			access_link = users.create_logout_url("/")
+			User_id=user.nickname()
+		else:
+			access_link = users.create_login_url("/")
+			logged="Not logged In"
+
+		self.response.write( "<a href='"+ access_link+"'>login/logout</a>\
+							<br>"+logged\
+							+ "<br>" +userid)
+	
 
 app = webapp2.WSGIApplication([
-    ('/doit', MainHandler),('/doit2', MainHandler2)
+    ('/', MainHandler)
 ], debug=True)

@@ -1,0 +1,14 @@
+car= lambda l: None if l== None or l==[] else l[0]
+
+cdr= lambda l: [] if l == None or l == [] else l[1:]
+
+inversa = lambda l: [] if l==None or l==[] else  if car!=None else inversa(cdr)+caraux = lambda m,p,a: p+a  if m==0 else aux(m-1,p+a,p)
+fibb = lambda m: aux(m,1,0) if m>2 else 0 if m==0 else 1
+
+print(fibb(3))
+ 
+
+
+l1=[1,2,3,4]
+print(l1)
+print(inversa(l1))
