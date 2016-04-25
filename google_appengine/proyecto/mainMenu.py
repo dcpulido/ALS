@@ -9,7 +9,7 @@ import jinja2
 from partida import Partida
 from jugador import Jugador
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader = jinja2.FileSystemLoader(os.path.dirname(__file__)+"/templates"),
+    loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions = ["jinja2.ext.autoescape"],
     autoescape = True)
 
@@ -21,10 +21,12 @@ class MainMenuHandler(webapp2.RequestHandler):
 			user_name = user.email()
 			access_link = users.create_logout_url("/")
 			partidas = Partida.query()
+			jugadores = Jugador.query()
 			template_values = {
 				"user_name": user_name,
 				"access_link": access_link,
-				"partidas":partidas
+				"partidas":partidas,
+				"jugadores":jugadores
 			}
 
 			template = JINJA_ENVIRONMENT.get_template( "mainMenu.html" )

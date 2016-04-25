@@ -22,6 +22,8 @@ import jinja2
 from mainMenu import MainMenuHandler
 from game import gameHandler
 from addGame import gameAddHandler
+from player import playerHandler
+from addPlayer import playerAddHandler
 
 from equipo import Equipo
 from jugador import Jugador
@@ -56,7 +58,9 @@ app = webapp2.WSGIApplication([
     ("/", MainHandler),
     ("/main", MainMenuHandler),
     ("/game",gameHandler),
-    ("/addGame",gameAddHandler)
+    ("/addGame",gameAddHandler),
+    ("/player",playerHandler),
+    ("/addPlayer",playerAddHandler)
 ], debug=True)
 
 

@@ -11,8 +11,10 @@ handlers:
   upload: favicon\.ico
 
 - url: /templates
-  static_files: templates
-  upload: templates
+  static_dir: templates
+
+- url: /entitys
+  static_dir: entitys
 
 - url: .*
   script: main.app
