@@ -17,8 +17,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class playerAddHandler(webapp2.RequestHandler):
     def get(self):
+        players=Jugador.query()
+        template_values = {
+                "jugadores":players
+            }
         template = JINJA_ENVIRONMENT.get_template( "addPlayer.html" )
-        self.response.write(template.render());
+        self.response.write(template.render(template_values));
     def get_input(self):
         self.name = self.request.get("name", "")
         self.id = int(self.request.get("id", 0))
@@ -31,7 +35,15 @@ class playerAddHandler(webapp2.RequestHandler):
         p1.name=self.name
         p1.posicion=self.posicion
         p1.id=self.id
-        p1.put()
-        self.redirect("/main")
+        players=Jugador.query()
+        flag=True
+        for jugador in players:
+            if jugador.id==self.id:
+                flag=False
+        if flag==True:
+            p1.put()
+            self.redirect("/main")
+        else:
+            self.redirect("/main")
 
 	

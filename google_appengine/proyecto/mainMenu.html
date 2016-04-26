@@ -1,64 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="template.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<title>partida</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRINCIPAL</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ </head>
 
-<div id="dvHeader">
-<p>
-<table width="100%">
-	<tr>
-		<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
-		<td width="50%">rol</td>
-	</tr>
-</table>
-</p>
-</div>
-<div id="dvPartidas">
-    {% for partida in partidas %}
-			<div id="tblPartidas">
-			
-			<i><big>PARTIDO:{{partida.name}}</big>
-			</i>
-			
-			<a href="/game?name={{partida.name}}"><img width="50px" height="20px" title="select" class="styled-button" /></a>
+
+
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div id="dvHeader">
+			<p>
+				<table width="100%">
+					<tr>
+						<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+					</tr>
+				</table>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 ">
+		<label for="dvPartidas"><h2>PARTIDAS: </h2></label>
+			<div  id="dvPartidas">
+				<div class="row">
+					<div class="col-md-2 "><h4>ID</h4></div>
+					<div class="col-md-2 "><h4>NOMBRE</h4></div>
+				</div>
+				{% for partida in partidas %}
+					<div class="row" id="tblPartidas">
+						<div class="col-md-2 "><big>{{partida.id}} </big></div>	
+						<div class="col-md-4 "><big>{{partida.nombre}} </big></div>	
+						<div class="col-md-2 "><a class="btn btn-success" href="/game?name={{partida.name}}">Select</a></div>	
+					</div>
+				    {% endfor %}
+				</div>
+				<div id="dvAdd">
+					<a class="btn btn-warning" href="/addGame">Añadir Partida</a>
+				</div>
+		</div>
+		<div class="col-md-6 ">
+		<label for="dvequipos"><h2>EQUIPOS: </h2></label>
+		<div id="dvequipos">
+			<div class="row">
+				<div class="col-md-2 "><h4>ID</h4></div>
+				<div class="col-md-2 "><h4>NOMBRE</h4></div>
 			</div>
-    {% endfor %}
-</div>
-<div id="dvAdd">
-	<a href="/addGame"><img width="80px" height="20px" title="addGame" class="styled-button" /></a>
-</div>
-<div id="dvequipos">
-    {% for equipo in equipos %}
-			<div id="tbljugadores">
-			
-			<i><big>EQUIPO:{{equipo.name}}</big>
-			</i>
-			
-			<a href="/team?name={{equipo.name}}"><img width="50px" height="20px" title="select" class="styled-button" /></a>
+		    {% for equipo in equipos %}
+				<div class="row">
+					<div id="tbljugadores">
+						<div class="col-md-2 "><big>{{equipo.id}} </big></div>
+						<div class="col-md-2 "><big>{{equipo.name}} </big></div>
+						<div class="col-md-2 "><a class="btn btn-success" href="/team?name={{equipo.name}}">Select</a></div>
+					</div>
+				</div>
+		    {% endfor %}
+		
+		<div id="dvAddTeam">
+			<a class="btn btn-warning" href="/addTeam">Añadir Equipo</a>
+		</div>
+
+
+		<label for="dvjugadores"><h2>JUGADORES: </h2></label>
+		<div id="dvjugadores">
+			<div class="row">
+				<div class="col-md-2 "><h4>ID</h4></div>
+				<div class="col-md-2 "><h4>NOM</h4></div>
+				<div class="col-md-2 "><h4>POS</h4></div>
 			</div>
-    {% endfor %}
-</div>
-<div id="dvAddTeam">
-	<a href="/addTeam"><img width="80px" height="20px" title="addTeam" class="styled-button" /></a>
-</div>
-<div id="dvjugadores">
-    {% for jugador in jugadores %}
-			<div id="tbljugadores">
-			
-			<i><big>JUGADOR:{{jugador.name}}</big>
-			</i>
-			
-			<a href="/player?name={{jugador.name}}"><img width="50px" height="20px" title="select" class="styled-button" /></a>
-			</div>
-    {% endfor %}
-</div>
-<div id="dvAddPlayer">
-	<a href="/addPlayer"><img width="80px" height="20px" title="addPlayer" class="styled-button" /></a>
-</div>
+		    {% for jugador in jugadores %}
+				<div class="row">
+					<div id="tbljugadores">
+						<div class="col-md-2 "><big>{{jugador.id}} </big></div>
+						<div class="col-md-2 "><big>{{jugador.name}} </big></div>
+						<div class="col-md-2 "><big>{{jugador.posicion}} </big></div>
+						<div class="col-md-2 "><a class="btn btn-success" href="/player?name={{jugador.name}}">Select</a></div>
+					</div>
+				</div>
+		    {% endfor %}
+		</div>
+		<div id="dvAddPlayer">
+			<a class="btn btn-warning" href="/addPlayer"> Añadir Jugador</a>
+		</div>
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
 </body>
 </html>

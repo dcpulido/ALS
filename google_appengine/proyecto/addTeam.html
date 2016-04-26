@@ -1,29 +1,76 @@
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>add Team</title>
-</head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRINCIPAL</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
-	<form id="addTeam"method="post">
+<div class="container">
+	<div class="row">
+		<br>
+		<div class="col-md-4">
+			<form id="addTeam"method="post">
+			<h2>NUEVO EQUIPO</h2>
+			<label for="edName">Nombre: </label>
+			<input class="form-control" type="text" name="name" id="edName" size="80"
+				value="{{name}}"
+	 			style="border:none;background-color:lightgray"/>
+			<br>
+			<label for="edid">Id(recuerda no insertar id repetida): </label>
+			<input class="form-control" type="number" name="id" id="edid" size="80"
+				value="{{id}}"
+	 			style="border:none;background-color:lightgray"/>
+			<br>
 		
-		Name: <input type="text" name="name" id="edName" size="80"
-			value="{{name}}"
- 			style="border:none;background-color:lightgray"/>
-		<br>
-		id  <input type="number" name="id" id="edid0" size="80"
-			value="{{id}}"
- 			style="border:none;background-color:lightgray"/>
-		<br>
-		id jugador1: <input type="number" name="idjugador1" id="edid1" size="80"
-			value="{{idjugador1}}"
- 			style="border:none;background-color:lightgray"/>
-		<br>
-		id jugador2: <input type="number" name="idjugador2" id="edid2" size="80"
-			value="{{idjugador2}}"
- 			style="border:none;background-color:lightgray"/>
-		<br>
-		
-		<input type="submit" value="guardar"/>
-		</form>
+			<label for="edpos1">Jugador A: </label>
+			<select class="form-control" type="text" name="posicion" id="edpos1" value="{{idjugador1}}" >
+				{% for jugador in jugadores %}
+					<option value="{{jugador.id}}">{{jugador.name}}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="edpos2">Jugador A: </label>
+			<select class="form-control" type="text" name="posicion" id="edpos2" value="{{idjugador2}}" >
+				{% for jugador in jugadores %}
+					<option value="{{jugador.id}}">{{jugador.name}}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<input type="submit" class="btn btn-warning" value="guardar"/>
+			</form>
+		</div>
+	
+	<div class="col-md-4">
+	<h2>LISTA EQUIPOS</h2>
+	<br>
+		<div id="dvjugadores">
+
+    		{% for equipo in equipos %}
+    		<div class="row">
+				<div id="tbljugadores">
+				<div class="col-md-5 "><p><big>id:{{equipo.id}} nombre:{{equipo.name}} </big></div>
+				<div class="col-md-1 col-md-offset-4"><a class="btn btn-success" href="/team?name={{equipo.name}}">Select</a></div>
+				
+				</p>
+				</div>
+			</div>
+    		{% endfor %}
+		</div>
+	</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
 </body>
 </html>

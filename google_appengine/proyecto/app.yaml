@@ -16,6 +16,10 @@ handlers:
 - url: /entitys
   static_dir: entitys
 
+- url: /bootstrap
+  static_dir: bootstrap
+  
+
 - url: .*
   script: main.app
 

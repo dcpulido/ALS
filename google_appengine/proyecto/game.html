@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="template.css">
-	<title>partida</title>
-</head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRINCIPAL</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ </head>
 <body>
 
-<div id="dvPartida">
-	<i><big>PARTIDA:{{partida.name}} <br/></big></i>
-	<div id="dveA">
-	<big>EQUIPO A:{{e1.name}}<br/></big>
-			JUGADORES: {{j1.name}} {{j1.posicion}}<a href="/jugador?name={{j1.name}}"><img width="50px" height="20px" title="select" ></a><br/>
-					   {{j2.name}} {{j2.posicion}}<a href="/jugador?name={{j2.name}}"><img width="50px" height="20px" title="select" ></a><br/>
+<div class="container" id="dvPartida">
+	<div class="row">
+		<h1>{{partida.name}}</h1> <br/></big></i>
 	</div>	
-	<div id="dveB">
-	<big>EQUIPO B:{{e2.name}}<br/></big>
-			JUGADORES: {{j3.name}} {{j3.posicion}}<a href="/jugador?name={{j3.name}}"><img width="50px" height="20px" title="select" ></a><br/>
-					   {{j4.name}} {{j4.posicion}}<a href="/jugador?name={{j4.name}}"><img width="50px" height="20px" title="select" ></a><br/>
-	</div>	
+	<div class="row">
+		<label for="eq1"><h2>{{e1.name}} </h2></label>
+		<div class="col-md-6 " >
+		<div class="col-md-6 " id="eq1">
+			<label for="j1"><h2>JUGADOR 1 </h2></label>
+			<div id="j1" class="row">
+			<div class="col-md-6 "><h3>{{j1.name}} </h3></div>
+			<div class="col-md-6 "><h3>{{j1.posicion}} </h3></div>
+			</div>
+			<label for="j2"><h2>JUGADOR 2 </h2></label>
+			<div id="j2" class="row">
+			<div class="col-md-6 "><h3>{{j2.name}} </h3></div>
+			<div class="col-md-6 "><h3>{{j2.posicion}} </h3></div>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-2 " >
+			<h1>VS</h1>
+		</div>
+		<label for="eq2"><h2>{{e2.name}} </h2></label>
+		<div class="col-md-6 " >
+		<div class="col-md-6 " id="eq2">
+			<label for="j3"><h2>JUGADOR 1 </h2></label>
+			<div id="j3" class="row">
+			<div class="col-md-6 "><h3>{{j3.name}} </h3></div>
+			<div class="col-md-6 "><h3>{{j3.posicion}} </h3></div>
+			</div>
+			<label for="j4"><h2>JUGADOR 2 </h2></label>
+			<div id="j4" class="row">
+			<div class="col-md-6 "><h3>{{j4.name}} </h3></div>
+			<div class="col-md-6 "><h3>{{j4.posicion}} </h3></div>
+			</div>
+		</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>

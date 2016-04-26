@@ -17,8 +17,14 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class teamAddHandler(webapp2.RequestHandler):
     def get(self):
+        players=Jugador.query()
+        equipos=Equipo.query()
+        template_values = {
+                "jugadores":players,
+                "equipos":equipos
+            }
         template = JINJA_ENVIRONMENT.get_template( "addTeam.html" )
-        self.response.write(template.render());
+        self.response.write(template.render(template_values));
     def get_input(self):
         self.name = self.request.get("name", "")
         self.id = int(self.request.get("id", 0))
