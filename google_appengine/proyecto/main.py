@@ -24,6 +24,7 @@ from game import gameHandler
 from addGame import gameAddHandler
 from player import playerHandler
 from addPlayer import playerAddHandler
+from addTeam import teamAddHandler
 
 from equipo import Equipo
 from jugador import Jugador
@@ -39,18 +40,14 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if  user !=None:
             if  user.email() == "dcpulido@gmail.com" :
-                self.redirect("/main")
-		return
-        else:
-            access_link = users.create_login_url("/main")
+                self.redirect("/main") 
+        access_link = users.create_login_url("/main")
 
         template_values = {
-                "user_name": user_name,
-                "access_link": access_link,
+            "user_name": user_name,
+            "access_link": access_link,
         }
     
-    
-
         template = JINJA_ENVIRONMENT.get_template( "index.html" )
         self.response.write(template.render(template_values))
 
@@ -60,7 +57,8 @@ app = webapp2.WSGIApplication([
     ("/game",gameHandler),
     ("/addGame",gameAddHandler),
     ("/player",playerHandler),
-    ("/addPlayer",playerAddHandler)
+    ("/addPlayer",playerAddHandler),
+    ("/addTeam",teamAddHandler)
 ], debug=True)
 
 

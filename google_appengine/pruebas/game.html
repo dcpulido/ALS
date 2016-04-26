@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="template.css">
+	<title>partida</title>
+</head>
+<body>
+
+<div id="dvPartida">
+	<i><big>PARTIDA:{{partida.name}} <br/></big></i>
+	<div id="dveA">
+	<big>EQUIPO A:{{e1.name}}<br/></big>
+			JUGADORES: {{j1.name}} {{j1.posicion}}<a href="/jugador?name={{j1.name}}"><img width="50px" height="20px" title="select" ></a><br/>
+					   {{j2.name}} {{j2.posicion}}<a href="/jugador?name={{j2.name}}"><img width="50px" height="20px" title="select" ></a><br/>
+	</div>	
+	<div id="dveB">
+	<big>EQUIPO B:{{e2.name}}<br/></big>
+			JUGADORES: {{j3.name}} {{j3.posicion}}<a href="/jugador?name={{j3.name}}"><img width="50px" height="20px" title="select" ></a><br/>
+					   {{j4.name}} {{j4.posicion}}<a href="/jugador?name={{j4.name}}"><img width="50px" height="20px" title="select" ></a><br/>
+	</div>	
+</div>
+</body>
+</html>
