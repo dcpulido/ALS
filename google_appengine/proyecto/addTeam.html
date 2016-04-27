@@ -33,16 +33,16 @@
 			<br>
 		
 			<label for="edpos1">Jugador A: </label>
-			<select class="form-control" type="text" name="posicion" id="edpos1" value="{{idjugador1}}" >
+			<select class="form-control" type="text" name="nameJug1" id="edpos1" value="{{nameJug1}}" >
 				{% for jugador in jugadores %}
-					<option value="{{jugador.id}}">{{jugador.name}}</option>
+					<option >{{jugador.name}}</option>
 				{% endfor %}
 			</select>
 			<br>
 			<label for="edpos2">Jugador A: </label>
-			<select class="form-control" type="text" name="posicion" id="edpos2" value="{{idjugador2}}" >
+			<select class="form-control" type="text" name="nameJug2" id="edpos2" value="{{nameJug2}}" >
 				{% for jugador in jugadores %}
-					<option value="{{jugador.id}}">{{jugador.name}}</option>
+					<option>{{jugador.name}}</option>
 				{% endfor %}
 			</select>
 			<br>

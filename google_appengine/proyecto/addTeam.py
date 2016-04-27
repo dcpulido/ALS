@@ -28,8 +28,17 @@ class teamAddHandler(webapp2.RequestHandler):
     def get_input(self):
         self.name = self.request.get("name", "")
         self.id = int(self.request.get("id", 0))
-        self.idt1 = int(self.request.get("idjugador1", 0))
-        self.idt2 = int(self.request.get("idjugador2", 0))
+        jugadores=Jugador.query()
+        self.idjugador1 = self.request.get("nameJug1", "")
+        self.idjugador2 = self.request.get("nameJug2", "")
+        self.idt1=0
+        self.idt2=0
+        for jugador in jugadores:
+            if jugador.name == self.idjugador1:
+                self.idt1=jugador.id
+            if jugador.name == self.idjugador2:
+                self.idt2=jugador.id
+        
        
 
     def post(self):
