@@ -18,7 +18,12 @@ handlers:
 
 - url: /bootstrap
   static_dir: bootstrap
+
+- url: /css
+  static_dir: css
   
+- url: /img
+  static_dir: img
 
 - url: .*
   script: main.app

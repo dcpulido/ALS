@@ -1,11 +1,33 @@
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>ROL STATS</title>
-
-</head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INDEX</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link type="text/css"href="css/header.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
-	ROL STATS
-	<td width="80%"><a href="{{access_link}}">{{user_name}}</a></td>
+	<nav class="navbar navbar-default">
+  		<div class="container-fluid navbar-header-fb">
+    		<div class="navbar-header-fb">
+      		<a class="navbar-brand navbar-header-fb" href="/">
+        		<img class="my-img" alt="Brand" src="img/ico.png">
+      		</a>
+      		<div class="col-md-1 col-md-offset-10">
+      			<td  width="80%"><a class="my-link" href="{{access_link}}">{{user_name}}</a></td>
+      		</div>
+      		
+    		</div>
+  		</div>
+</nav>
 </body>
 </html>

@@ -1,14 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="template.css">
-	<title>partida</title>
-</head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRINCIPAL</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link type="text/css"href="css/header.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
+<nav class="navbar navbar-default">
 
-<div id="dvPlayer">
-	<i><big>PARTIDA:{{name}} <br/></big></i>
+  		<div class="container-fluid navbar-header-fb">
+  			<div class="row">
+    			<div class="col-md-1 navbar-header-fb">
+      				<a class="navbar-brand navbar-header-fb" href="/">
+        				<img class="my-img" alt="Brand" src="img/ico.png">
+      				</a>
+      			</div>
+      			<div class="col-md-1" id="dvAdd">
+					<a class="btn my-btn " href="/addGame">Añadir Partida</a>
+				</div>
+				<div class="col-md-1" id="dvAddTeam">
+					<a class="btn my-btn" href="/addTeam">Añadir Equipo</a>
+				</div>
+				<div class="col-md-1"id="dvAddPlayer">
+					<a class="btn my-btn" href="/addPlayer"> Añadir Jugador</a>
+				</div>	
+      			<div class="col-md-1 col-md-offset-4">
+      				<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+      			</div>
+      			
+      		
+    		</div>
+  		</div>
+</nav>
+
+<div id="dvjugadores">
+			<div class="row">
+				<div class="col-md-2 "><h4>NOM</h4></div>
+				<div class="col-md-2 "><h4>POS</h4></div>
+			</div>
+			<div class="row">
+				<div id="tbljugadores">
+					<div class="col-md-2 "><big>{{name}} </big></div>
+					<div class="col-md-2 "><big>{{posicion}} </big></div>
+
+				</div>
+			</div>
+		
 </div>
+{% for partida in partidas %}
+					<div class="row " id="tblPartidas">
+						<div class="col-md-2 "><big>{{partida.name}} </big></div>	
+						<div class="col-md-1 "><big>{{partida.equipo1.name}} </big></div>
+						<div class="col-md-1 "><big>{{partida.equipo1.name}} </big></div>	
+						<div class="col-md-1 "><big>{{partida.estado}} </big></div>		
+						<div class="col-md-1 "><a class="btn my-btn" href="/game?name={{partida.name}}">Select</a></div>	
+					</div>
+				    {% endfor %}
+{% for equipo in equipos %}
+				<div class="row">
+					<div id="tbljugadores">
+						<div class="col-md-2 "><big>{{equipo.name}} </big></div>
+						<div class="col-md-1 "><big>{{equipo.jugador1.name}} </big></div>
+						<div class="col-md-1 "><big>{{equipo.jugador1.name}} </big></div>
+						<div class="col-md-2 "><a class="btn my-btn" href="/team?name={{equipo.name}}">Select</a></div>
+					</div>
+				</div>
+		    {% endfor %}
 </body>
 </html>

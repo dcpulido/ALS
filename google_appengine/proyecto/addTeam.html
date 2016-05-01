@@ -7,7 +7,7 @@
  
     <!-- CSS de Bootstrap -->
     <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
- 
+ 	<link type="text/css"href="css/header.css" rel="stylesheet" media="screen">
     <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -15,6 +15,32 @@
     <![endif]-->
   </head>
 <body>
+<nav class="navbar navbar-default">
+
+  		<div class="container-fluid navbar-header-fb">
+  			<div class="row">
+    			<div class="col-md-1 navbar-header-fb">
+      				<a class="navbar-brand navbar-header-fb" href="/">
+        				<img class="my-img" alt="Brand" src="img/ico.png">
+      				</a>
+      			</div>
+      			<div class="col-md-1" id="dvAdd">
+					<a class="btn my-btn " href="/addGame">Añadir Partida</a>
+				</div>
+				<div class="col-md-1" id="dvAddTeam">
+					<a class="btn my-btn" href="/addTeam">Añadir Equipo</a>
+				</div>
+				<div class="col-md-1"id="dvAddPlayer">
+					<a class="btn my-btn" href="/addPlayer"> Añadir Jugador</a>
+				</div>	
+      			<div class="col-md-1 col-md-offset-4">
+      				<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+      			</div>
+      			
+      		
+    		</div>
+  		</div>
+</nav>
 <div class="container">
 	<div class="row">
 		<br>
@@ -24,11 +50,6 @@
 			<label for="edName">Nombre: </label>
 			<input class="form-control" type="text" name="name" id="edName" size="80"
 				value="{{name}}"
-	 			style="border:none;background-color:lightgray"/>
-			<br>
-			<label for="edid">Id(recuerda no insertar id repetida): </label>
-			<input class="form-control" type="number" name="id" id="edid" size="80"
-				value="{{id}}"
 	 			style="border:none;background-color:lightgray"/>
 			<br>
 		
@@ -46,7 +67,7 @@
 				{% endfor %}
 			</select>
 			<br>
-			<input type="submit" class="btn btn-warning" value="guardar"/>
+			<input type="submit" class="btn my-btn" value="guardar"/>
 			</form>
 		</div>
 	
@@ -58,8 +79,8 @@
     		{% for equipo in equipos %}
     		<div class="row">
 				<div id="tbljugadores">
-				<div class="col-md-5 "><p><big>id:{{equipo.id}} nombre:{{equipo.name}} </big></div>
-				<div class="col-md-1 col-md-offset-4"><a class="btn btn-success" href="/team?name={{equipo.name}}">Select</a></div>
+				<div class="col-md-5 "><p><big>nombre:{{equipo.name}} posicion:{{equipo.posicion}} </big></div>
+				<div class="col-md-1 col-md-offset-4"><a class="btn my-btn" href="/team?name={{equipo.name}}">Select</a></div>
 				
 				</p>
 				</div>

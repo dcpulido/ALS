@@ -25,7 +25,6 @@ class playerAddHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values));
     def get_input(self):
         self.name = self.request.get("name", "")
-        self.id = int(self.request.get("id", 0))
         self.posicion = self.request.get("posicion", 0)
        
 
@@ -34,11 +33,10 @@ class playerAddHandler(webapp2.RequestHandler):
         p1=Jugador()
         p1.name=self.name
         p1.posicion=self.posicion
-        p1.id=self.id
         players=Jugador.query()
         flag=True
         for jugador in players:
-            if jugador.id==self.id:
+            if jugador.name==self.name:
                 flag=False
         if flag==True:
             p1.put()
