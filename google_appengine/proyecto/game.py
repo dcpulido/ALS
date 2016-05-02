@@ -8,6 +8,9 @@ import jinja2
 from partida import Partida
 from jugador import Jugador
 from equipo import Equipo
+
+from equipoEnt import equipoEnt
+from partidaEnt import partidaEnt
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions = ["jinja2.ext.autoescape"],

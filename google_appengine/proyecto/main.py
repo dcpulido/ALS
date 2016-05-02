@@ -29,6 +29,7 @@ from deletePlayer import playerDeleteHandler
 from deleteTeam import teamDeleteHandler
 from deleteGame import gameDeleteHandler
 from index import indexHandler
+from resolve import resolveHandler
 
 from equipo import Equipo
 from jugador import Jugador
@@ -64,7 +65,8 @@ app = webapp2.WSGIApplication([
     ("/addTeam",teamAddHandler),
     ("/deletePlayer",playerDeleteHandler),
     ("/deleteTeam",teamDeleteHandler),
-    ("/deleteGame",gameDeleteHandler)
+    ("/deleteGame",gameDeleteHandler),
+    ("/resolve",resolveHandler)
 ], debug=True)
 
 

@@ -8,54 +8,57 @@
  
     <!-- CSS de Bootstrap -->
     <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link type="text/css"href="css/header.css" rel="stylesheet" media="screen">
  
     <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
- </head>
+  </head>
 <body>
+<nav class="navbar navbar-default">
 
-<div class="container" id="dvPartida">
-	<div class="row">
-		<h1>{{partida.name}}</h1> <br/></big></i>
-	</div>	
-	<div class="row">
-		<label for="eq1"><h2>{{e1.name}} </h2></label>
-		<div class="col-md-6 " >
-		<div class="col-md-6 " id="eq1">
-			<label for="j1"><h2>JUGADOR 1 </h2></label>
-			<div id="j1" class="row">
-			<div class="col-md-6 "><h3>{{j1.name}} </h3></div>
-			<div class="col-md-6 "><h3>{{j1.posicion}} </h3></div>
-			</div>
-			<label for="j2"><h2>JUGADOR 2 </h2></label>
-			<div id="j2" class="row">
-			<div class="col-md-6 "><h3>{{j2.name}} </h3></div>
-			<div class="col-md-6 "><h3>{{j2.posicion}} </h3></div>
-			</div>
-		</div>
-		</div>
-		<div class="col-md-2 " >
-			<h1>VS</h1>
-		</div>
-		<label for="eq2"><h2>{{e2.name}} </h2></label>
-		<div class="col-md-6 " >
-		<div class="col-md-6 " id="eq2">
-			<label for="j3"><h2>JUGADOR 1 </h2></label>
-			<div id="j3" class="row">
-			<div class="col-md-6 "><h3>{{j3.name}} </h3></div>
-			<div class="col-md-6 "><h3>{{j3.posicion}} </h3></div>
-			</div>
-			<label for="j4"><h2>JUGADOR 2 </h2></label>
-			<div id="j4" class="row">
-			<div class="col-md-6 "><h3>{{j4.name}} </h3></div>
-			<div class="col-md-6 "><h3>{{j4.posicion}} </h3></div>
-			</div>
-		</div>
-		</div>
-	</div>
-</div>
+      <div class="container-fluid navbar-header-fb">
+        <div class="row">
+          <div class="col-md-1 navbar-header-fb">
+              <a class="navbar-brand navbar-header-fb" href="/">
+                <img class="my-img" alt="Brand" src="img/ico.png">
+              </a>
+            </div>
+            <div class="col-md-1" id="dvAdd">
+          <a class="btn my-btn" href="/main">Administrar</a>
+        </div>
+       
+            <div class="col-md-1 col-md-offset-6">
+              <td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+            </div>
+            
+          
+        </div>
+      </div>
+</nav>
+	<div class="container">
+        <div class="panel panel-default">
+          <div class="my-panel panel-heading ">
+              <h3 class="panel-title"><big>{{partida.name}} </big></h3>
+          </div>
+          <div class="panel-body">
+                         <div class="row" id="tblPartidas">
+                          <div class="col-md-5 "><h2><big>{{partida.equipo1.name}} </big>({{partida.equipo1.nameJug1}},{{partida.equipo1.nameJug2}}) </h2></div>
+                          <div class="col-md-2 "><h3>          VS </h3></div> 
+                          <div class="col-md-5 "><h2><big>{{partida.equipo2.name}} </big>({{partida.equipo2.nameJug1}},{{partida.equipo2.nameJug2}}) </h2></div>
+                          
+                          
+                          </div>
+                          <div class="row" >
+                          		<div class="col-md-5 "><a class="btn my-btn" href="/stats?name={{partida.name}}&win={{partida.equipo1.name}}&lose={{partida.equipo2.name}}">WIN EQUIPO1</a></div>
+                          		<div class="col-md-2 "><h3>{{partida.estado}} </h3></div> 
+                          		<div class="col-md-5 "><a class="btn my-btn" href="/stats?name={{partida.name}}&win={{partida.equipo2.name}}&lose={{partida.equipo1.name}}">WIN EQUIPO2</a></div>
+                          </div>
+          </div>
+          </div>
+    </div> 
+
 </body>
 </html>
