@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PRINCIPAL</title>
+    <title>TURBOLIN</title>
  
     <!-- CSS de Bootstrap -->
     <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -79,8 +79,7 @@
     		{% for equipo in equipos %}
     		<div class="row">
 				<div id="tbljugadores">
-				<div class="col-md-5 "><p><big>nombre:{{equipo.name}} posicion:{{equipo.posicion}} </big></div>
-				<div class="col-md-1 col-md-offset-4"><a class="btn my-btn" href="/team?name={{equipo.name}}">Select</a></div>
+				<div class="col-md-12 "><p><big>nombre:{{equipo.name}}<br> jugadores:{{equipo.nameJug1}}, {{equipo.nameJug2}} </big></div>
 				
 				</p>
 				</div>

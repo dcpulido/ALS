@@ -22,8 +22,8 @@ class teamDeleteHandler(webapp2.RequestHandler):
             self.redirect("/main")
             return
         else:      
-            equipo=Equipo.query(Equipo.name==name)
-            games=Partida.query(ndb.OR(Partida.nameEquipoA==name,Partida.nameEquipoB==name))
+            equipo=Equipo.query(ndb.AND(Equipo.name==name,Equipo.user_id==users.get_current_user().user_id()))
+            games=Partida.query(ndb.AND(ndb.OR(Partida.nameEquipoA==name,Partida.nameEquipoB==name),Partida.user_id==users.get_current_user().user_id()))
             names=[]
             for ga in games:
                 names.append(ga.name)

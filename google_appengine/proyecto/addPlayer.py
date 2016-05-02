@@ -17,7 +17,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class playerAddHandler(webapp2.RequestHandler):
     def get(self):
-        players=Jugador.query()
+        pla=Jugador.query(Jugador.user_id==users.get_current_user().user_id())
+        players=[]
+        for p in pla:players.append(p)
         template_values = {
                 "jugadores":players
             }
@@ -34,7 +36,14 @@ class playerAddHandler(webapp2.RequestHandler):
         p1.name=self.name
         if p1.name == "":self.redirect("/addPlayer")
         p1.posicion=self.posicion
-        players=Jugador.query()
+        p1.user_id=users.get_current_user().user_id()
+        p1.ratio=0
+        p1.elo=1000
+        p1.wins=0
+        p1.loses=0
+        pla=Jugador.query(Jugador.user_id==users.get_current_user().user_id())
+        players=[]
+        for p in pla:players.append(p)
         flag=True
         for jugador in players:
             if jugador.name==self.name:

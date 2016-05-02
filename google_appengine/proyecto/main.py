@@ -28,6 +28,7 @@ from addTeam import teamAddHandler
 from deletePlayer import playerDeleteHandler
 from deleteTeam import teamDeleteHandler
 from deleteGame import gameDeleteHandler
+from index import indexHandler
 
 from equipo import Equipo
 from jugador import Jugador
@@ -39,23 +40,22 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        user_name = "Please login"
         user = users.get_current_user()
+        user_name = "Logout"
         if  user !=None:
-            if  user.email() == "dcpulido@gmail.com" :
-                self.redirect("/main") 
-        access_link = users.create_login_url("/main")
+            self.redirect("/index") 
+        access_link = users.create_login_url("/index")
 
         template_values = {
-            "user_name": user_name,
             "access_link": access_link,
+            "user_name":user_name
         }
-    
-        template = JINJA_ENVIRONMENT.get_template( "index.html" )
+        template = JINJA_ENVIRONMENT.get_template( "main.html" )
         self.response.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([
     ("/", MainHandler),
+    ("/index", indexHandler),
     ("/main", MainMenuHandler),
     ("/game",gameHandler),
     ("/addGame",gameAddHandler),

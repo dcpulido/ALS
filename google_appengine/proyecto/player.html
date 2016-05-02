@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PRINCIPAL</title>
+    <title>TURBOLIN</title>
  
     <!-- CSS de Bootstrap -->
     <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -58,24 +58,32 @@
 			</div>
 		
 </div>
+<br>
+<br>
+<br>
+<br>
+PARTIDAS
 {% for partida in partidas %}
 					<div class="row " id="tblPartidas">
 						<div class="col-md-2 "><big>{{partida.name}} </big></div>	
 						<div class="col-md-1 "><big>{{partida.equipo1.name}} </big></div>
 						<div class="col-md-1 "><big>{{partida.equipo1.name}} </big></div>	
 						<div class="col-md-1 "><big>{{partida.estado}} </big></div>		
-						<div class="col-md-1 "><a class="btn my-btn" href="/game?name={{partida.name}}">Select</a></div>	
 					</div>
 				    {% endfor %}
+<br>
+<br>
+<br>
+<br>
+EQUIPOS
 {% for equipo in equipos %}
 				<div class="row">
 					<div id="tbljugadores">
 						<div class="col-md-2 "><big>{{equipo.name}} </big></div>
 						<div class="col-md-1 "><big>{{equipo.jugador1.name}} </big></div>
 						<div class="col-md-1 "><big>{{equipo.jugador1.name}} </big></div>
-						<div class="col-md-2 "><a class="btn my-btn" href="/team?name={{equipo.name}}">Select</a></div>
 					</div>
 				</div>
-		    {% endfor %}
+	{% endfor %}
 </body>
 </html>

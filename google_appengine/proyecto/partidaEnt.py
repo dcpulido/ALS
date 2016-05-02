@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 
 
 class partidaEnt:
-	def __init__(self,name,nameEq1,nameEq2,estado):
+	def __init__(self,name,nameEq1,nameEq2,estado,user_id):
 		self.__name=name
 		self.__estado=estado
 		equipos=Equipo.query()
@@ -12,6 +12,7 @@ class partidaEnt:
 				self.__equipo1=equipo
 			if equipo.name==nameEq2:
 				self.__equipo2=equipo
+		self.__user_id=user_id
 	@property
 	def name(self):
 		return self.__name
@@ -43,3 +44,11 @@ class partidaEnt:
 	@estado.setter
 	def estado(self, value):
 		self.__estado=value
+
+	@property
+	def user_id(self):
+		return self.__user_id
+
+	@user_id.setter
+	def user_id(self, value):
+		self.__user_id=value

@@ -25,18 +25,18 @@ class gameHandler(webapp2.RequestHandler):
             self.redirect("/game")
             return
         else:      
-            partidas=Partida.query()
+            partidas=Partida.query(Partida.user_id==users.get_current_user().user_id())
             for partida in partidas:
                 if partida.name==name:
                     toret =partida
-            equipos=Equipo.query()
+            equipos=Equipo.query(Equipo.user_id==users.get_current_user().user_id())
             for equipo in equipos:
                 if equipo.id==toret.idEquipoA:
                     e1 =equipo
             for equipo in equipos:
                 if equipo.id==toret.idEquipoB:
                     e2 =equipo
-            jugadores=Jugador.query()
+            jugadores=Jugador.query(Jugador.user_id==users.get_current_user().user_id())
             for jugador in jugadores:
                 if jugador.id==e1.idJug1:
                     j1 =jugador

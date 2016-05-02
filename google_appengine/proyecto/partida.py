@@ -5,3 +5,4 @@ class Partida(ndb.Model):
 	nameEquipoA = ndb.StringProperty(required = True)
 	nameEquipoB = ndb.StringProperty(required = True)
 	estado= ndb.StringProperty(required = True)
+	user_id = ndb.StringProperty(required = True)

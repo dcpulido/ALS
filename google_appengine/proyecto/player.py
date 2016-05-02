@@ -29,9 +29,9 @@ class playerHandler(webapp2.RequestHandler):
             self.redirect("/player")
             return
         else:      
-            jugadores=Jugador.query()
-            partidas=Partida.query()
-            equipos=Equipo.query()
+            jugadores=Jugador.query(Jugador.user_id==users.get_current_user().user_id())
+            partidas=Partida.query(Partida.user_id==users.get_current_user().user_id())
+            equipos=Equipo.query(Equipo.user_id==users.get_current_user().user_id())
             
 
             for jugador in jugadores:
@@ -45,12 +45,12 @@ class playerHandler(webapp2.RequestHandler):
                     flag=True
                     for e in eq:
                         if e.name==equipo.name:flag=False
-                    if flag==True:eq.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2)) 
+                    if flag==True:eq.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2,users.get_current_user().user_id())) 
                 if equipo.nameJug2==name :
                     flag=True
                     for e in eq:
                         if e.name==equipo.name:flag=False
-                    if flag==True:eq.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2))
+                    if flag==True:eq.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2,users.get_current_user().user_id()))
                     
 
             ga=[]
@@ -60,12 +60,12 @@ class playerHandler(webapp2.RequestHandler):
                         flag=True
                         for g in ga:
                             if g.name==partida.name:flag=False
-                        if flag==True:ga.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado)) 
+                        if flag==True:ga.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado,users.get_current_user().user_id())) 
                     if partida.nameEquipoB==e.name :
                         flag=True
                         for g in ga:
                             if g.name==partida.name:flag=False
-                        if flag==True:ga.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado)) 
+                        if flag==True:ga.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado,users.get_current_user().user_id())) 
 
         template_values = {
             "name":toret.name,

@@ -17,7 +17,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class gameAddHandler(webapp2.RequestHandler):
     def get(self):
-        equipos=Equipo.query()
+        equ=Equipo.query(Equipo.user_id==users.get_current_user().user_id())
+        equipos=[]
+        for p in equ:equipos.append(p)
         template_values = {
                 "equipos":equipos
         }
@@ -37,8 +39,9 @@ class gameAddHandler(webapp2.RequestHandler):
         p1.nameEquipoA=self.equipoA
         p1.nameEquipoB=self.equipoB
         p1.estado=self.estado
+        p1.user_id=users.get_current_user().user_id()
 
-        if Partida.query(Partida.name==p1.name).count()==0:
+        if Partida.query(ndb.AND(Partida.name==p1.name,Partida.user_id==users.get_current_user().user_id())).count()==0:
             p1.put()
             time.sleep(1)
             self.redirect("/addGame")

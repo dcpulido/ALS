@@ -20,37 +20,37 @@ class MainMenuHandler(webapp2.RequestHandler):
 	def get(self):
 		def montaEquipos(self):
 			toret=[]
-			for equipo in Equipo.query():
-				toret.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2))
+			for equipo in Equipo.query(Equipo.user_id==users.get_current_user().user_id()):
+				toret.append(equipoEnt(equipo.name,equipo.nameJug1,equipo.nameJug2,users.get_current_user().user_id()))
 			return toret
 
 		def montaPartidas(self):
 			toret=[]
-			for partida in Partida.query():
-				toret.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado))
+			for partida in Partida.query(Partida.user_id==users.get_current_user().user_id()):
+				toret.append(partidaEnt(partida.name,partida.nameEquipoA,partida.nameEquipoB,partida.estado,users.get_current_user().user_id()))
 			return toret
 
 		user = users.get_current_user()
 
-		if  user.email() == "dcpulido@gmail.com" :
-			user_name = user.email()
-			print("llegoaki")
-			access_link = users.create_logout_url("/")
-			jugadores = Jugador.query()
-			equipos = montaEquipos(self)
-			partidas = montaPartidas(self)
-			template_values = {
-				"user_name": user_name,
-				"access_link": access_link,
-				"partidas":partidas,
-				"jugadores":jugadores,
-				"equipos":equipos
-			}
 
-			template = JINJA_ENVIRONMENT.get_template( "mainMenu.html" )
-			self.response.write(template.render(template_values));
-		else:
-			self.redirect("/")
-			return
+		user_name = user.email()
+		print("llegoaki")
+		access_link = users.create_logout_url("/")
+		juga = Jugador.query(Jugador.user_id==users.get_current_user().user_id())
+		jugadores=[]
+		for j in juga: jugadores.append(j)
+		equipos = montaEquipos(self)
+		partidas = montaPartidas(self)
+		template_values = {
+			"user_name": user_name,
+			"access_link": access_link,
+			"partidas":partidas,
+			"jugadores":jugadores,
+			"equipos":equipos
+		}
+
+		template = JINJA_ENVIRONMENT.get_template( "mainMenu.html" )
+		self.response.write(template.render(template_values));
+		
 
 		

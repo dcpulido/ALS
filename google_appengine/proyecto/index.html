@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INDEX</title>
+    <title>TURBOLIN</title>
  
     <!-- CSS de Bootstrap -->
     <link type="text/css"href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -16,18 +16,48 @@
     <![endif]-->
   </head>
 <body>
-	<nav class="navbar navbar-default">
-  		<div class="container-fluid navbar-header-fb">
-    		<div class="navbar-header-fb">
-      		<a class="navbar-brand navbar-header-fb" href="/">
-        		<img class="my-img" alt="Brand" src="img/ico.png">
-      		</a>
-      		<div class="col-md-1 col-md-offset-10">
-      			<td  width="80%"><a class="my-link" href="{{access_link}}">{{user_name}}</a></td>
-      		</div>
-      		
-    		</div>
-  		</div>
+<nav class="navbar navbar-default">
+
+      <div class="container-fluid navbar-header-fb">
+        <div class="row">
+          <div class="col-md-1 navbar-header-fb">
+              <a class="navbar-brand navbar-header-fb" href="/">
+                <img class="my-img" alt="Brand" src="img/ico.png">
+              </a>
+            </div>
+            <div class="col-md-1" id="dvAdd">
+          <a class="btn my-btn" href="/main">Administrar</a>
+        </div>
+       
+            <div class="col-md-1 col-md-offset-6">
+              <td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+            </div>
+            
+          
+        </div>
+      </div>
 </nav>
+	
+
+<div class="container">
+    {% for partida in partidas %}
+        <div class="panel panel-default">
+          <div class="my-panel panel-heading ">
+              <h3 class="panel-title"><big>{{partida.name}} </big></h3>
+          </div>
+          <div class="panel-body">
+                         <div class="row" id="tblPartidas">
+                          <div class="col-md-3 "><h2><big>{{partida.equipo1.name}} </big>({{partida.equipo1.nameJug1}},{{partida.equipo1.nameJug2}}) </h2></div>
+                          <div class="col-md-2 "><h3>          VS </h3></div> 
+                          <div class="col-md-3 "><h2><big>{{partida.equipo2.name}} </big>({{partida.equipo2.nameJug1}},{{partida.equipo2.nameJug2}}) </h2></div>
+                          <div class="col-md-2 "><h3>{{partida.estado}} </h3></div> 
+                          <div class="col-md-1 "><a class="btn my-btn" href="/resolve?name={{partida.name}}">Resolver</a></div>
+                          </div>
+          </div>
+          </div>
+          
+
+    {% endfor %}
+</div>
 </body>
 </html>

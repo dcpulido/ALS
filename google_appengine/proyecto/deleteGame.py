@@ -22,7 +22,7 @@ class gameDeleteHandler(webapp2.RequestHandler):
             self.redirect("/main")
             return
         else:      
-            partida=Partida.query(Partida.name==name)
+            partida=Partida.query(ndb.AND(Partida.name==name,Partida.user_id==users.get_current_user().user_id()))
             for pa in partida:
                 pa.key.delete()
             time.sleep(1)

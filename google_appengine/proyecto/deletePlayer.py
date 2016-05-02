@@ -22,14 +22,14 @@ class playerDeleteHandler(webapp2.RequestHandler):
             self.redirect("/main")
             return
         else:      
-            jugador=Jugador.query(Jugador.name==name)
-            teams=Equipo.query(ndb.OR(Equipo.nameJug1==name,Equipo.nameJug2==name))
+            jugador=Jugador.query(ndb.AND(Jugador.name==name,Jugador.user_id==users.get_current_user().user_id()))
+            teams=Equipo.query(ndb.AND(ndb.OR(Equipo.nameJug1==name,Equipo.nameJug2==name),Equipo.user_id==users.get_current_user().user_id()))
             names=[]
             for eq in teams:
                 names.append(eq.name)
                 eq.key.delete()
 
-            games=Partida.query()
+            games=Partida.query(Partida.user_id==users.get_current_user().user_id())
             for ga in games:
                 for name in names:
                     if ga.nameEquipoA== name:
