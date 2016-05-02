@@ -4,6 +4,7 @@ from google.appengine.ext import ndb
 import os
 import webapp2
 import jinja2
+import time
 
 from partida import Partida
 from jugador import Jugador
@@ -33,15 +34,28 @@ class statsHandler(webapp2.RequestHandler):
             self.redirect("/main")
             return
         else:      
-            partida=Partida.query(ndb.AND(Partida.name==name,Partida.user_id==users.get_current_user().user_id()))
-            win=Jugador.query(ndb.AND(Jugador.name==win,Jugador.user_id==users.get_current_user().user_id()))
-            games=Partida.query(ndb.AND(ndb.OR(Partida.nameJugadorA==name,Partida.nameEquipoB==name),Partida.user_id==users.get_current_user().user_id()))
-            names=[]
-            for ga in games:
-                names.append(ga.name)
-                ga.key.delete()
+			partida=Partida.query(ndb.AND(Partida.name==name,Partida.user_id==users.get_current_user().user_id()))
+			win=Equipo.query(ndb.AND(Equipo.name==win,Equipo.user_id==users.get_current_user().user_id()))
+			lose=Equipo.query(ndb.AND(Equipo.name==lose,Equipo.user_id==users.get_current_user().user_id()))
 
-            for jug in equipo:
-                jug.key.delete()
-            time.sleep(1)
-            self.redirect("/main")
+
+			for ga in partida:
+				ga.estado="jugado"
+				ga.put()
+
+			for w in win:
+				w.wins=w.wins+1
+				lo=w.loses
+				if w.loses == 0:lo=1
+				w.ratio=w.wins/lo
+				w.elo=w.elo+10
+				w.put()
+
+			for w in lose:
+				w.loses=w.loses+1
+				w.ratio=w.wins/w.loses
+				w.elo=w.elo-10
+				w.put()
+
+			time.sleep(1)
+			self.redirect("/main")
