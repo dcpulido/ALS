@@ -1,7 +1,7 @@
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
-
+import time
 import os
 import webapp2
 import jinja2
@@ -33,10 +33,16 @@ class gameAddHandler(webapp2.RequestHandler):
         self.get_input()
         p1=Partida()
         p1.name=self.name
+        if p1.name == "":self.redirect("/addGame")
         p1.nameEquipoA=self.equipoA
         p1.nameEquipoB=self.equipoB
         p1.estado=self.estado
-        p1.put()
-        self.redirect("/main")
+
+        if Partida.query(Partida.name==p1.name).count()==0:
+            p1.put()
+            time.sleep(1)
+            self.redirect("/addGame")
+        else:
+            self.redirect("/addGame")
 
 	

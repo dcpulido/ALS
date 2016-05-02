@@ -25,6 +25,9 @@ from addGame import gameAddHandler
 from player import playerHandler
 from addPlayer import playerAddHandler
 from addTeam import teamAddHandler
+from deletePlayer import playerDeleteHandler
+from deleteTeam import teamDeleteHandler
+from deleteGame import gameDeleteHandler
 
 from equipo import Equipo
 from jugador import Jugador
@@ -58,7 +61,10 @@ app = webapp2.WSGIApplication([
     ("/addGame",gameAddHandler),
     ("/player",playerHandler),
     ("/addPlayer",playerAddHandler),
-    ("/addTeam",teamAddHandler)
+    ("/addTeam",teamAddHandler),
+    ("/deletePlayer",playerDeleteHandler),
+    ("/deleteTeam",teamDeleteHandler),
+    ("/deleteGame",gameDeleteHandler)
 ], debug=True)
 
 

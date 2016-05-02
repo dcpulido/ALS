@@ -1,7 +1,7 @@
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
-
+import time
 import os
 import webapp2
 import jinja2
@@ -30,16 +30,20 @@ class teamAddHandler(webapp2.RequestHandler):
         self.namet1 = self.request.get("nameJug1", "")
         self.namet2 = self.request.get("nameJug2", "")
         
-        
-       
-
     def post(self):
         self.get_input()
         p1=Equipo()
         p1.name=self.name
+        if p1.name == "":self.redirect("/addTeam")
         p1.nameJug1=self.namet1
-        p1.nameJug2=self.namet2
-        p1.put()
-        self.redirect("/main")
+        p1.nameJug2=self.namet2 
+        if Equipo.query(Equipo.name==p1.name).count()==0:
+            p1.put()
+            time.sleep(1)
+            self.redirect("/addTeam")
+        else:
+            self.redirect("/addTeam")
 
+
+      
 	
